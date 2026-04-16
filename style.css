@@ -1,0 +1,125 @@
+:root{
+  --bg-gradient-start: #0f172a;
+  --bg-gradient-end: #0b3a66;
+  --card-bg: rgba(255,255,255,0.06);
+  --accent: #60a5fa;
+  --btn-bg: rgba(255,255,255,0.04);
+  --btn-hover: rgba(255,255,255,0.06);
+  --glass: rgba(255,255,255,0.03);
+  --text: #e6eef8;
+  --muted: #9fb4d8;
+  --shadow: 0 10px 30px rgba(2,6,23,0.6);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background: linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  height:100vh;
+}
+
+/* Center page with Flexbox */
+.page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+}
+
+/* Calculator card */
+.calculator{
+  width:100%;
+  max-width:420px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border-radius:16px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Display */
+.display{
+  background:var(--card-bg);
+  border-radius:10px;
+  padding:14px 16px;
+  margin-bottom:16px;
+  text-align:right;
+  min-height:78px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.display__previous{
+  color:var(--muted);
+  font-size:0.95rem;
+  min-height:18px;
+  line-height:1;
+  opacity:0.9;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.display__current{
+  font-size:2.2rem;
+  font-weight:600;
+  line-height:1;
+  word-break:break-all;
+}
+
+/* Keys grid */
+.keys{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:10px;
+}
+
+/* Buttons */
+.btn{
+  background:var(--btn-bg);
+  color:var(--text);
+  border: none;
+  padding:16px;
+  font-size:1.1rem;
+  border-radius:10px;
+  cursor:pointer;
+  transition: transform 0.08s ease, background 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: 0 2px 8px rgba(2,6,23,0.4) inset;
+  user-select:none;
+}
+
+.btn:active{ transform: translateY(2px) scale(0.998) }
+.btn:hover{ background:var(--btn-hover) }
+
+/* Wide and tall button helpers */
+.btn--wide{ grid-column: span 2; }
+.btn--tall{ grid-row: span 2; display:flex; align-items:center; justify-content:center }
+
+/* Operators style */
+.btn[data-action="operator"]{
+  background: linear-gradient(180deg, rgba(96,165,250,0.16), rgba(96,165,250,0.08));
+  color: #eaf6ff;
+  font-weight:600;
+  box-shadow:none;
+}
+
+.btn[data-action="equals"]{
+  background: linear-gradient(180deg,var(--accent), #3b82f6);
+  color:#04263a;
+  font-weight:700;
+  box-shadow: 0 8px 20px rgba(59,130,246,0.18);
+}
+
+/* Responsive adjustments */
+@media (max-width:420px){
+  .display__current{ font-size:1.8rem }
+  .btn{ padding:14px; font-size:1rem }
+}
